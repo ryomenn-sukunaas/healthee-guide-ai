@@ -8,17 +8,18 @@ export interface Doctor {
   feedback: string;
   avatar: string;
   experience: number;
+  coordinates: { lat: number; lng: number };
 }
 
 export const doctors: Doctor[] = [
-  { id: 1, name: "Dr. Sarah Chen", specialization: "General Physician", location: "New York", rating: 4.8, fees: 120, feedback: "Very thorough and caring doctor.", avatar: "SC", experience: 12 },
-  { id: 2, name: "Dr. James Wilson", specialization: "Cardiologist", location: "Los Angeles", rating: 4.9, fees: 200, feedback: "Excellent heart specialist with great bedside manner.", avatar: "JW", experience: 18 },
-  { id: 3, name: "Dr. Priya Sharma", specialization: "Dermatologist", location: "Chicago", rating: 4.7, fees: 150, feedback: "Helped clear my skin issues quickly.", avatar: "PS", experience: 8 },
-  { id: 4, name: "Dr. Michael Brown", specialization: "Neurologist", location: "New York", rating: 4.6, fees: 250, feedback: "Knowledgeable and patient with explanations.", avatar: "MB", experience: 15 },
-  { id: 5, name: "Dr. Emily Davis", specialization: "Pediatrician", location: "Houston", rating: 4.9, fees: 100, feedback: "Amazing with kids, very gentle approach.", avatar: "ED", experience: 10 },
-  { id: 6, name: "Dr. Robert Kim", specialization: "Orthopedic Surgeon", location: "Los Angeles", rating: 4.5, fees: 300, feedback: "Fixed my knee issue completely.", avatar: "RK", experience: 20 },
-  { id: 7, name: "Dr. Lisa Patel", specialization: "Pulmonologist", location: "Chicago", rating: 4.8, fees: 180, feedback: "Great respiratory specialist.", avatar: "LP", experience: 14 },
-  { id: 8, name: "Dr. David Martinez", specialization: "ENT Specialist", location: "Houston", rating: 4.7, fees: 140, feedback: "Resolved my chronic sinus problem.", avatar: "DM", experience: 11 },
+  { id: 1, name: "Dr. Sarah Chen", specialization: "General Physician", location: "New York", rating: 4.8, fees: 120, feedback: "Very thorough and caring doctor.", avatar: "SC", experience: 12, coordinates: { lat: 40.7128, lng: -74.006 } },
+  { id: 2, name: "Dr. James Wilson", specialization: "Cardiologist", location: "Los Angeles", rating: 4.9, fees: 200, feedback: "Excellent heart specialist with great bedside manner.", avatar: "JW", experience: 18, coordinates: { lat: 34.0522, lng: -118.2437 } },
+  { id: 3, name: "Dr. Priya Sharma", specialization: "Dermatologist", location: "Chicago", rating: 4.7, fees: 150, feedback: "Helped clear my skin issues quickly.", avatar: "PS", experience: 8, coordinates: { lat: 41.8781, lng: -87.6298 } },
+  { id: 4, name: "Dr. Michael Brown", specialization: "Neurologist", location: "New York", rating: 4.6, fees: 250, feedback: "Knowledgeable and patient with explanations.", avatar: "MB", experience: 15, coordinates: { lat: 40.758, lng: -73.9855 } },
+  { id: 5, name: "Dr. Emily Davis", specialization: "Pediatrician", location: "Houston", rating: 4.9, fees: 100, feedback: "Amazing with kids, very gentle approach.", avatar: "ED", experience: 10, coordinates: { lat: 29.7604, lng: -95.3698 } },
+  { id: 6, name: "Dr. Robert Kim", specialization: "Orthopedic Surgeon", location: "Los Angeles", rating: 4.5, fees: 300, feedback: "Fixed my knee issue completely.", avatar: "RK", experience: 20, coordinates: { lat: 34.0195, lng: -118.4912 } },
+  { id: 7, name: "Dr. Lisa Patel", specialization: "Pulmonologist", location: "Chicago", rating: 4.8, fees: 180, feedback: "Great respiratory specialist.", avatar: "LP", experience: 14, coordinates: { lat: 41.8925, lng: -87.6241 } },
+  { id: 8, name: "Dr. David Martinez", specialization: "ENT Specialist", location: "Houston", rating: 4.7, fees: 140, feedback: "Resolved my chronic sinus problem.", avatar: "DM", experience: 11, coordinates: { lat: 29.7372, lng: -95.4613 } },
 ];
 
 export interface SymptomCondition {
