@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/components/AuthProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -19,6 +22,15 @@ const Navbar = () => {
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
           <Link to="/symptoms" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Symptom Checker</Link>
           <Link to="/doctors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Find Doctors</Link>
+          {user ? (
+            <Button variant="outline" size="sm" onClick={signOut} className="rounded-xl">
+              <LogOut className="w-4 h-4" /> Sign out
+            </Button>
+          ) : (
+            <Button asChild size="sm" className="rounded-xl">
+              <Link to="/auth">Sign in</Link>
+            </Button>
+          )}
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -31,6 +43,13 @@ const Navbar = () => {
           <Link to="/" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground">Home</Link>
           <Link to="/symptoms" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground">Symptom Checker</Link>
           <Link to="/doctors" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground">Find Doctors</Link>
+          {user ? (
+            <button onClick={() => { void signOut(); setOpen(false); }} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <LogOut className="w-4 h-4" /> Sign out
+            </button>
+          ) : (
+            <Link to="/auth" onClick={() => setOpen(false)} className="block text-sm font-medium text-primary">Sign in</Link>
+          )}
         </div>
       )}
     </nav>

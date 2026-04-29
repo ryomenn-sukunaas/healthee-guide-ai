@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, MapPin, DollarSign, Clock } from "lucide-react";
 import { doctors } from "@/data/mockData";
+import DoctorMap from "@/components/DoctorMap";
 
 const locations = ["All", ...Array.from(new Set(doctors.map(d => d.location)))];
 const ratings = ["All", "4.5+", "4.7+", "4.9+"];
@@ -27,6 +28,10 @@ const DoctorList = () => {
             Find <span className="hero-gradient-text">Doctors</span>
           </h1>
           <p className="text-muted-foreground mb-8">Browse top-rated specialists near you.</p>
+
+          <div className="mb-8">
+            <DoctorMap doctors={filtered} />
+          </div>
 
           {/* Filters */}
           <div className="flex flex-wrap gap-4 mb-8">
