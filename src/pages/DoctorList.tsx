@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Star, MapPin, DollarSign, Clock, CalendarCheck } from "lucide-react";
+import { Star, MapPin, DollarSign, Clock, CalendarCheck, Heart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { doctors, type Doctor } from "@/data/mockData";
 import DoctorMap from "@/components/DoctorMap";
 import BookingDialog from "@/components/BookingDialog";
+import { useFavorites } from "@/hooks/useFavorites";
 
 const locations = ["All", ...Array.from(new Set(doctors.map(d => d.location)))];
 const ratings = ["All", "4.5+", "4.7+", "4.9+"];
@@ -12,16 +13,22 @@ const ratings = ["All", "4.5+", "4.7+", "4.9+"];
 const DoctorList = () => {
   const [locFilter, setLocFilter] = useState("All");
   const [ratingFilter, setRatingFilter] = useState("All");
+  const [search, setSearch] = useState("");
   const [bookingDoctor, setBookingDoctor] = useState<Doctor | null>(null);
+  const { favorites, toggle } = useFavorites();
 
-  const filtered = doctors.filter(d => {
+  const filtered = useMemo(() => doctors.filter((d) => {
     if (locFilter !== "All" && d.location !== locFilter) return false;
     if (ratingFilter !== "All") {
       const min = parseFloat(ratingFilter.replace("+", ""));
       if (d.rating < min) return false;
     }
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      if (!d.name.toLowerCase().includes(q) && !d.specialization.toLowerCase().includes(q)) return false;
+    }
     return true;
-  });
+  }), [locFilter, ratingFilter, search]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -34,6 +41,16 @@ const DoctorList = () => {
 
           <div className="mb-8">
             <DoctorMap doctors={filtered} />
+          </div>
+
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by name or specialization..."
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-input bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            />
           </div>
 
           {/* Filters */}
@@ -78,9 +95,18 @@ const DoctorList = () => {
                     <h3 className="font-heading font-semibold text-foreground">{doc.name}</h3>
                     <p className="text-sm text-primary font-medium">{doc.specialization}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-amber-500">
-                    <Star className="w-4 h-4 fill-current" />
-                    <span className="text-sm font-semibold text-foreground">{doc.rating}</span>
+                  <div className="flex flex-col items-end gap-2">
+                    <button
+                      onClick={() => toggle(doc.id)}
+                      aria-label={favorites.has(doc.id) ? "Remove favorite" : "Add favorite"}
+                      className="transition-transform hover:scale-110"
+                    >
+                      <Heart className={`h-5 w-5 ${favorites.has(doc.id) ? "fill-rose-500 text-rose-500" : "text-muted-foreground"}`} />
+                    </button>
+                    <div className="flex items-center gap-1 text-amber-500">
+                      <Star className="w-4 h-4 fill-current" />
+                      <span className="text-sm font-semibold text-foreground">{doc.rating}</span>
+                    </div>
                   </div>
                 </div>
 

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { Doctor } from "@/data/mockData";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/components/AuthProvider";
 
 interface Props {
   doctor: Doctor | null;
@@ -15,21 +17,33 @@ interface Props {
 const today = () => new Date().toISOString().slice(0, 10);
 
 const BookingDialog = ({ doctor, open, onOpenChange }: Props) => {
+  const { user } = useAuth();
   const [date, setDate] = useState(today());
   const [time, setTime] = useState("10:00");
   const [reason, setReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!doctor) return;
+    if (!doctor || !user) return;
     setSubmitting(true);
-    window.setTimeout(() => {
-      setSubmitting(false);
-      onOpenChange(false);
-      setReason("");
-      toast.success(`Appointment requested with ${doctor.name} on ${date} at ${time}.`);
-    }, 700);
+    const { error } = await supabase.from("appointments").insert({
+      user_id: user.id,
+      doctor_id: doctor.id,
+      doctor_name: doctor.name,
+      doctor_specialization: doctor.specialization,
+      appointment_date: date,
+      appointment_time: time,
+      reason: reason.trim() || null,
+    });
+    setSubmitting(false);
+    if (error) {
+      toast.error("Could not book appointment.");
+      return;
+    }
+    onOpenChange(false);
+    setReason("");
+    toast.success(`Appointment booked with ${doctor.name} on ${date} at ${time}.`);
   };
 
   return (
