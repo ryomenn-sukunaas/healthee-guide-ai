@@ -109,3 +109,16 @@
     transform: translateY(-2px);
   }
 }
+
+/* Leaflet dark-mode tweaks */
+.dark .leaflet-tile {
+  filter: brightness(0.7) invert(1) contrast(0.95) hue-rotate(180deg) saturate(0.6);
+}
+.dark .leaflet-container {
+  background: hsl(var(--muted));
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground)) !important;
+}
