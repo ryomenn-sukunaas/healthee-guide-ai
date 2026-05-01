@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, MapPin, DollarSign, Clock } from "lucide-react";
-import { doctors } from "@/data/mockData";
+import { Star, MapPin, DollarSign, Clock, CalendarCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { doctors, type Doctor } from "@/data/mockData";
 import DoctorMap from "@/components/DoctorMap";
+import BookingDialog from "@/components/BookingDialog";
 
 const locations = ["All", ...Array.from(new Set(doctors.map(d => d.location)))];
 const ratings = ["All", "4.5+", "4.7+", "4.9+"];
@@ -10,6 +12,7 @@ const ratings = ["All", "4.5+", "4.7+", "4.9+"];
 const DoctorList = () => {
   const [locFilter, setLocFilter] = useState("All");
   const [ratingFilter, setRatingFilter] = useState("All");
+  const [bookingDoctor, setBookingDoctor] = useState<Doctor | null>(null);
 
   const filtered = doctors.filter(d => {
     if (locFilter !== "All" && d.location !== locFilter) return false;
@@ -88,6 +91,13 @@ const DoctorList = () => {
                 </div>
 
                 <p className="mt-3 text-sm text-muted-foreground italic">"{doc.feedback}"</p>
+
+                <Button
+                  onClick={() => setBookingDoctor(doc)}
+                  className="mt-4 w-full rounded-xl hero-gradient-bg text-primary-foreground"
+                >
+                  <CalendarCheck className="h-4 w-4" /> Book appointment
+                </Button>
               </motion.div>
             ))}
           </div>
@@ -97,6 +107,7 @@ const DoctorList = () => {
           )}
         </motion.div>
       </div>
+      <BookingDialog doctor={bookingDoctor} open={bookingDoctor !== null} onOpenChange={(o) => !o && setBookingDoctor(null)} />
     </div>
   );
 };

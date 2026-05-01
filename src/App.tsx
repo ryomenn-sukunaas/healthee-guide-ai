@@ -13,6 +13,7 @@ import Footer from "./components/Footer.tsx";
 import { AuthProvider } from "./components/AuthProvider.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import HealthChatbot from "./components/HealthChatbot.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +32,9 @@ const App = () => (
       <Sonner />
       <AuthProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<LayoutWrapper><Index /></LayoutWrapper>} />
             <Route path="/auth" element={<LayoutWrapper><Auth /></LayoutWrapper>} />
             <Route path="/symptoms" element={<LayoutWrapper><ProtectedRoute><SymptomChecker /></ProtectedRoute></LayoutWrapper>} />
             <Route path="/doctors" element={<LayoutWrapper><ProtectedRoute><DoctorList /></ProtectedRoute></LayoutWrapper>} />
