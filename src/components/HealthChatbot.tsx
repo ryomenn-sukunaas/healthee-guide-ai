@@ -19,6 +19,8 @@ const starterMessages: ChatMessage[] = [
   },
 ];
 
+const suggestions = ["I have a fever and cough", "Bad headache since morning", "Find a doctor near me"];
+
 const createReply = (message: string) => {
   const text = message.toLowerCase();
   if (/chest|breath|faint|severe|stroke|bleed/.test(text)) {
@@ -101,6 +103,19 @@ const HealthChatbot = () => {
                   <div className="flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground">
                     <Loader2 className="h-4 w-4 animate-spin" /> Thinking
                   </div>
+                </div>
+              )}
+              {messages.length === 1 && !loading && (
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {suggestions.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => setInput(s)}
+                      className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground hover:border-primary hover:text-primary"
+                    >
+                      {s}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
