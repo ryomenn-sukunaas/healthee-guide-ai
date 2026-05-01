@@ -14,6 +14,10 @@ import { AuthProvider } from "./components/AuthProvider.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import HealthChatbot from "./components/HealthChatbot.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import Profile from "./pages/Profile.tsx";
+import Appointments from "./pages/Appointments.tsx";
+import Favorites from "./pages/Favorites.tsx";
+import { ThemeProvider } from "./components/ThemeProvider.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,23 +31,28 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => (
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <AuthProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<LayoutWrapper><Index /></LayoutWrapper>} />
-            <Route path="/auth" element={<LayoutWrapper><Auth /></LayoutWrapper>} />
-            <Route path="/symptoms" element={<LayoutWrapper><ProtectedRoute><SymptomChecker /></ProtectedRoute></LayoutWrapper>} />
-            <Route path="/doctors" element={<LayoutWrapper><ProtectedRoute><DoctorList /></ProtectedRoute></LayoutWrapper>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <HealthChatbot />
-        </BrowserRouter>
-      </AuthProvider>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AuthProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<LayoutWrapper><Index /></LayoutWrapper>} />
+              <Route path="/auth" element={<LayoutWrapper><Auth /></LayoutWrapper>} />
+              <Route path="/symptoms" element={<LayoutWrapper><ProtectedRoute><SymptomChecker /></ProtectedRoute></LayoutWrapper>} />
+              <Route path="/doctors" element={<LayoutWrapper><ProtectedRoute><DoctorList /></ProtectedRoute></LayoutWrapper>} />
+              <Route path="/profile" element={<LayoutWrapper><ProtectedRoute><Profile /></ProtectedRoute></LayoutWrapper>} />
+              <Route path="/appointments" element={<LayoutWrapper><ProtectedRoute><Appointments /></ProtectedRoute></LayoutWrapper>} />
+              <Route path="/favorites" element={<LayoutWrapper><ProtectedRoute><Favorites /></ProtectedRoute></LayoutWrapper>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <HealthChatbot />
+          </BrowserRouter>
+        </AuthProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
