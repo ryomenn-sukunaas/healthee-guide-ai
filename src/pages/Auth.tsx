@@ -53,14 +53,35 @@ const Auth = () => {
           },
         });
         if (error) throw error;
-        toast.success("Check your email to verify your Medicube account.");
+        // Auto-confirm is enabled — try immediate sign in
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email: cleanEmail,
+          password,
+        });
+        if (signInError) {
+          toast.success("Account created! Please sign in.");
+          setMode("signin");
+        } else {
+          toast.success("Welcome to Medicube!");
+          navigate(from, { replace: true });
+        }
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email: cleanEmail, password });
         if (error) throw error;
         navigate(from, { replace: true });
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Authentication failed.");
+      const raw = error instanceof Error ? error.message : "Authentication failed.";
+      let friendly = raw;
+      if (/already registered|already been registered|user already/i.test(raw)) {
+        friendly = "This email is already registered. Try signing in instead.";
+        setMode("signin");
+      } else if (/invalid login credentials/i.test(raw)) {
+        friendly = "Incorrect email or password. Please try again.";
+      } else if (/email not confirmed/i.test(raw)) {
+        friendly = "Please verify your email before signing in.";
+      }
+      toast.error(friendly);
     } finally {
       setLoading(false);
     }
