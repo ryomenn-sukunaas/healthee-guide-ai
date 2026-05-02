@@ -46,9 +46,7 @@ const HealthChatbot = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(starterMessages);
   const nextId = useRef(2);
 
-  const initials = useMemo(() => user?.email?.slice(0, 1).toUpperCase() || "U", [user?.email]);
-
-  if (!user) return null;
+  const initials = useMemo(() => user?.email?.slice(0, 1).toUpperCase() || "M", [user?.email]);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
