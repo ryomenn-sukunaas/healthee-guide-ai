@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Star, MapPin, DollarSign, Clock, CalendarCheck, Heart, Search } from "lucide-react";
+import { Star, MapPin, IndianRupee, Clock, CalendarCheck, Heart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { doctors, type Doctor } from "@/data/mockData";
 import DoctorMap from "@/components/DoctorMap";
@@ -112,7 +112,7 @@ const DoctorList = () => {
 
                 <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{doc.location}</span>
-                  <span className="flex items-center gap-1"><DollarSign className="w-3.5 h-3.5" />${doc.fees}</span>
+                  <span className="flex items-center gap-1"><IndianRupee className="w-3.5 h-3.5" />₹{doc.fees}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{doc.experience}yr</span>
                 </div>
 
