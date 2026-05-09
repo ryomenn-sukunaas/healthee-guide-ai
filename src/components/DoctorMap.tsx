@@ -84,7 +84,7 @@ const DoctorMap = ({ doctors }: { doctors: Doctor[] }) => {
                 <div className="space-y-1">
                   <p className="font-bold text-sm">{d.name}</p>
                   <p className="text-xs text-gray-600">{d.specialization}</p>
-                  <p className="text-xs">{d.location} · ⭐ {d.rating} · ${d.fees}</p>
+                  <p className="text-xs">{d.location} · ⭐ {d.rating} · ₹{d.fees}</p>
                 </div>
               </Popup>
             </Marker>
