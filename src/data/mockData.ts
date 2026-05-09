@@ -12,14 +12,14 @@ export interface Doctor {
 }
 
 export const doctors: Doctor[] = [
-  { id: 1, name: "Dr. Sarah Chen", specialization: "General Physician", location: "New York", rating: 4.8, fees: 120, feedback: "Very thorough and caring doctor.", avatar: "SC", experience: 12, coordinates: { lat: 40.7128, lng: -74.006 } },
-  { id: 2, name: "Dr. James Wilson", specialization: "Cardiologist", location: "Los Angeles", rating: 4.9, fees: 200, feedback: "Excellent heart specialist with great bedside manner.", avatar: "JW", experience: 18, coordinates: { lat: 34.0522, lng: -118.2437 } },
-  { id: 3, name: "Dr. Priya Sharma", specialization: "Dermatologist", location: "Chicago", rating: 4.7, fees: 150, feedback: "Helped clear my skin issues quickly.", avatar: "PS", experience: 8, coordinates: { lat: 41.8781, lng: -87.6298 } },
-  { id: 4, name: "Dr. Michael Brown", specialization: "Neurologist", location: "New York", rating: 4.6, fees: 250, feedback: "Knowledgeable and patient with explanations.", avatar: "MB", experience: 15, coordinates: { lat: 40.758, lng: -73.9855 } },
-  { id: 5, name: "Dr. Emily Davis", specialization: "Pediatrician", location: "Houston", rating: 4.9, fees: 100, feedback: "Amazing with kids, very gentle approach.", avatar: "ED", experience: 10, coordinates: { lat: 29.7604, lng: -95.3698 } },
-  { id: 6, name: "Dr. Robert Kim", specialization: "Orthopedic Surgeon", location: "Los Angeles", rating: 4.5, fees: 300, feedback: "Fixed my knee issue completely.", avatar: "RK", experience: 20, coordinates: { lat: 34.0195, lng: -118.4912 } },
-  { id: 7, name: "Dr. Lisa Patel", specialization: "Pulmonologist", location: "Chicago", rating: 4.8, fees: 180, feedback: "Great respiratory specialist.", avatar: "LP", experience: 14, coordinates: { lat: 41.8925, lng: -87.6241 } },
-  { id: 8, name: "Dr. David Martinez", specialization: "ENT Specialist", location: "Houston", rating: 4.7, fees: 140, feedback: "Resolved my chronic sinus problem.", avatar: "DM", experience: 11, coordinates: { lat: 29.7372, lng: -95.4613 } },
+  { id: 1, name: "Dr. Aarav Mehta", specialization: "General Physician", location: "Mumbai", rating: 4.8, fees: 600, feedback: "Very thorough and caring doctor.", avatar: "AM", experience: 12, coordinates: { lat: 19.076, lng: 72.8777 } },
+  { id: 2, name: "Dr. Vikram Iyer", specialization: "Cardiologist", location: "Delhi", rating: 4.9, fees: 1200, feedback: "Excellent heart specialist with great bedside manner.", avatar: "VI", experience: 18, coordinates: { lat: 28.6139, lng: 77.209 } },
+  { id: 3, name: "Dr. Priya Sharma", specialization: "Dermatologist", location: "Bengaluru", rating: 4.7, fees: 800, feedback: "Helped clear my skin issues quickly.", avatar: "PS", experience: 8, coordinates: { lat: 12.9716, lng: 77.5946 } },
+  { id: 4, name: "Dr. Rohan Kapoor", specialization: "Neurologist", location: "Mumbai", rating: 4.6, fees: 1500, feedback: "Knowledgeable and patient with explanations.", avatar: "RK", experience: 15, coordinates: { lat: 19.119, lng: 72.9051 } },
+  { id: 5, name: "Dr. Ananya Nair", specialization: "Pediatrician", location: "Chennai", rating: 4.9, fees: 500, feedback: "Amazing with kids, very gentle approach.", avatar: "AN", experience: 10, coordinates: { lat: 13.0827, lng: 80.2707 } },
+  { id: 6, name: "Dr. Arjun Reddy", specialization: "Orthopedic Surgeon", location: "Hyderabad", rating: 4.5, fees: 1800, feedback: "Fixed my knee issue completely.", avatar: "AR", experience: 20, coordinates: { lat: 17.385, lng: 78.4867 } },
+  { id: 7, name: "Dr. Lisa Patel", specialization: "Pulmonologist", location: "Kolkata", rating: 4.8, fees: 900, feedback: "Great respiratory specialist.", avatar: "LP", experience: 14, coordinates: { lat: 22.5726, lng: 88.3639 } },
+  { id: 8, name: "Dr. Devansh Joshi", specialization: "ENT Specialist", location: "Pune", rating: 4.7, fees: 700, feedback: "Resolved my chronic sinus problem.", avatar: "DJ", experience: 11, coordinates: { lat: 18.5204, lng: 73.8567 } },
 ];
 
 export interface SymptomCondition {
