@@ -54,7 +54,7 @@ const BookingDialog = ({ doctor, open, onOpenChange }: Props) => {
             <CalendarCheck className="h-5 w-5 text-primary" /> Book appointment
           </DialogTitle>
           <DialogDescription>
-            {doctor ? `${doctor.name} · ${doctor.specialization} · $${doctor.fees}` : "Schedule a consultation."}
+            {doctor ? `${doctor.name} · ${doctor.specialization} · ₹${doctor.fees}` : "Schedule a consultation."}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={submit} className="space-y-4">
