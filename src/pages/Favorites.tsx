@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Star, MapPin, DollarSign, Loader2 } from "lucide-react";
+import { Heart, Star, MapPin, IndianRupee, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -45,7 +45,7 @@ const Favorites = () => {
                   </div>
                   <div className="mt-4 grid grid-cols-3 gap-2 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{doc.location}</span>
-                    <span className="flex items-center gap-1"><DollarSign className="w-3.5 h-3.5" />${doc.fees}</span>
+                    <span className="flex items-center gap-1"><IndianRupee className="w-3.5 h-3.5" />₹{doc.fees}</span>
                     <span className="flex items-center gap-1"><Star className="w-3.5 h-3.5" />{doc.rating}</span>
                   </div>
                 </div>

@@ -31,10 +31,10 @@ const Recenter = ({ center }: { center: [number, number] }) => {
 
 const DoctorMap = ({ doctors }: { doctors: Doctor[] }) => {
   const [userPoint, setUserPoint] = useState<{ lat: number; lng: number } | null>(null);
-  const [center, setCenter] = useState<[number, number]>([39.5, -98.35]);
+  const [center, setCenter] = useState<[number, number]>([22.9734, 78.6569]);
 
   const center0 = useMemo<[number, number]>(() => {
-    if (doctors.length === 0) return [39.5, -98.35];
+    if (doctors.length === 0) return [22.9734, 78.6569];
     const lat = doctors.reduce((s, d) => s + d.coordinates.lat, 0) / doctors.length;
     const lng = doctors.reduce((s, d) => s + d.coordinates.lng, 0) / doctors.length;
     return [lat, lng];
@@ -72,7 +72,7 @@ const DoctorMap = ({ doctors }: { doctors: Doctor[] }) => {
       </div>
 
       <div className="h-[420px] w-full">
-        <MapContainer center={center0} zoom={4} scrollWheelZoom={false} className="h-full w-full">
+        <MapContainer center={center0} zoom={5} scrollWheelZoom={false} className="h-full w-full">
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -84,7 +84,7 @@ const DoctorMap = ({ doctors }: { doctors: Doctor[] }) => {
                 <div className="space-y-1">
                   <p className="font-bold text-sm">{d.name}</p>
                   <p className="text-xs text-gray-600">{d.specialization}</p>
-                  <p className="text-xs">{d.location} · ⭐ {d.rating} · ${d.fees}</p>
+                  <p className="text-xs">{d.location} · ⭐ {d.rating} · ₹{d.fees}</p>
                 </div>
               </Popup>
             </Marker>
